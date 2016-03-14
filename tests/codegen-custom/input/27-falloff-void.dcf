@@ -1,0 +1,2 @@
+// Should exit with status 0
+void main() {}

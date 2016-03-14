@@ -1,0 +1,10 @@
+// rule 22
+// upper bound of while must be positive integer
+
+void main() {
+  int i;
+  i = 0;
+  while (true) : 0 {
+    i = i + 10;
+  }
+}

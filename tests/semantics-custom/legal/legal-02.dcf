@@ -1,0 +1,12 @@
+void main() {
+  int a;
+  a = 0;
+  while (a < 10) : 5 {
+    if (a > 3) {
+      break;
+    }
+    else {
+      a += 3;
+    }
+  }
+}

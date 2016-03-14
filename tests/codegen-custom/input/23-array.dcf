@@ -1,0 +1,6 @@
+callout printf;
+int A[10];
+void main ( ) {
+  A[0] = 5;
+  printf("%d\n", A[0]);
+}

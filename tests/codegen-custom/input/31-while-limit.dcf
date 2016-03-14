@@ -1,0 +1,27 @@
+callout printf;
+
+int count;
+
+boolean test(int i) {
+  count += 1;
+  return i < 1000;
+}
+
+boolean once() {
+  printf("You should only see this once.\n");
+  return true;
+}
+
+void main() {
+  int i;
+  i = 0;
+  while (test(i)): 10 {
+    printf("%d\n", i);
+    i += 1;
+  }
+  while (once()): 1 {
+    printf("This is my only appearance.\n");
+  }
+
+  printf("Test called %d times.  Should be 10\n", count);
+}

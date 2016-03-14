@@ -1,0 +1,7 @@
+// rule 15
+// ternary results must have same type
+
+void main() {
+  int a;
+  a = true ? 1 : false;
+}

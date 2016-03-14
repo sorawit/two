@@ -1,0 +1,9 @@
+callout printf;
+
+int a, c;
+boolean B[10], D[4];
+
+void main() {
+  printf("%d", a);
+  printf("Random string");
+}

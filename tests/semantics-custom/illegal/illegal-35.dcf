@@ -1,0 +1,8 @@
+// access negative array location
+
+callout print;
+int A[1000];
+
+void main() {
+    A[2] = A[-3];
+}

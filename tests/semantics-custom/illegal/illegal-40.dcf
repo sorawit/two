@@ -1,0 +1,8 @@
+callout printf;
+
+
+boolean a[123];
+
+void main() {
+    printf(a[---3]);
+}

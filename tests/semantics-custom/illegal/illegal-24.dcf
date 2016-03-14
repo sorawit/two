@@ -1,0 +1,8 @@
+// rule 7
+// array variable used as argument to non-callout method
+
+void foo(int a) {}
+void main() {
+  int arr[10];
+  foo(arr);
+}

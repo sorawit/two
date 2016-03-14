@@ -1,0 +1,11 @@
+callout printf;
+callout lol;
+
+
+boolean a[123];
+
+void main() {
+    int b;
+    b = 3;
+    printf(a[-'\t'], b);
+}

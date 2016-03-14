@@ -1,0 +1,5 @@
+callout printf;
+
+void main() {
+  printf("%d\n", 2 + 3);
+}

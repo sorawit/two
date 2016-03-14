@@ -1,0 +1,11 @@
+// access negative array location
+
+callout print;
+int A[1000];
+
+void x(int p) {
+}
+
+void main() {
+    x(A[-1]);
+}

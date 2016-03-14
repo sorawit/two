@@ -1,0 +1,6 @@
+void main() {
+  assignee = array[index];
+  assignee = array[1 + 2];
+  assignee = scalar;
+  assignee[idx] = val
+}

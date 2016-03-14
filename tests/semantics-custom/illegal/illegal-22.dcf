@@ -1,0 +1,9 @@
+// rule 6
+// void method used as expression
+
+void foo() {}
+
+void main() {
+  int a;
+  a = 3 * foo();
+}

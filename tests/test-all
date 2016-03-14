@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+for i in $(git rev-parse --show-toplevel)/tests/*/test.sh; do
+    if [[ $i =~ '(scanner|parser|semantic).*?/test.sh$' ]]; then
+        echo "Skipping $i"
+        continue
+    fi
+
+    echo $i
+    $i
+    echo "\n"
+done

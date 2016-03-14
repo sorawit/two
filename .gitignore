@@ -1,0 +1,19 @@
+# Foo files
+foo*
+
+# Temporary files
+*~
+\#*
+*.swp
+*.swo
+
+# ant-generated files
+build/
+parser/autogen/
+parser/classes/
+parser/dist/
+src/edu/mit/compilers/grammar
+
+# osx
+.DS_Store
+scala/

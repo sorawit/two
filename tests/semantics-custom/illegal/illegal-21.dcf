@@ -1,0 +1,16 @@
+// invalid overwrite variable
+
+int A[1000];
+int B[100];
+int C;
+
+void main() {
+    boolean C;
+    int A;
+    while (A > 0) {
+        boolean A;
+        C = true;
+        A = 20;
+    }
+    return;
+}

@@ -1,0 +1,26 @@
+// Callout party!
+callout random;
+int a, b;
+int A[1000];
+
+int x(int a, boolean b, int c) {
+    return 20;
+}
+
+void main() {
+    a = random();
+    a = random(a, random());
+    a = random(random(random()), random());
+    a = x(a, true, b);
+    a = x(a, random(), b);
+    a = A[random(random())];
+
+    random();
+    random(a, random());
+    random(random(random()), random());
+    x(a, true, b);
+    x(a, random(), b);
+
+    return;
+
+}

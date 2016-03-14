@@ -1,0 +1,10 @@
+// rule 21
+// ending expr of for must have type int
+
+callout printf;
+
+void main() {
+  for (i = 0, true) {
+    printf(i);
+  }
+}

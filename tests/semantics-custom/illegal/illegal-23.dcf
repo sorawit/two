@@ -1,0 +1,7 @@
+// rule 7
+// string literal used as argument to non-callout method
+
+void foo(int a) {}
+void main() {
+  foo("string");
+}

@@ -1,0 +1,5 @@
+callout print;
+
+int main () {
+    return 0;
+}

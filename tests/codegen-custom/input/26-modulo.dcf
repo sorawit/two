@@ -1,0 +1,20 @@
+callout printf;
+
+void main() {
+    int a, b, c, d, e, f;
+    a = 20;
+    b = 15;
+    d = -4;
+    e = -2;
+    f = 100;
+    printf("%d mod %d = %d\n", a, b, a % b);
+    printf("%d mod %d = %d\n", b, d, b % d);
+    printf("%d mod %d = %d\n", a, e, a % e);
+    printf("%d mod %d = %d\n", d, f, d % f);
+    printf("%d mod %d = %d\n", e, b, e % b);
+    printf("%d mod %d = %d\n", f, a, f % a);
+    printf("%d mod %d = %d\n", d, b, d % b);
+    printf("%d mod %d = %d\n", e, a, e % a);
+    printf("%d mod %d = %d\n", a, d, a % d);
+    printf("%d mod %d = %d\n", a, f, a % f);
+}

@@ -1,0 +1,7 @@
+// rule 16
+// operands of arith_op must have type int
+
+void main() {
+  int a;
+  a = false / true;
+}

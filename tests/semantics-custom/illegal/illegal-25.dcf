@@ -1,0 +1,9 @@
+// rule 10
+// ID used as a location without being declared in local/global scope or formal parameter
+
+void foo(int param) {
+  notdeclared = 4;
+}
+void main() {
+  foo(10);
+}

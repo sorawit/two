@@ -1,0 +1,8 @@
+// rule 23
+// break must be contained in for or while
+
+void main() {
+  if (false) {
+    break;
+  }
+}

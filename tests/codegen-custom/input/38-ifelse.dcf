@@ -1,0 +1,11 @@
+callout printf;
+
+void main() {
+  printf("Printing on!\n");
+  if (true) {
+    printf("Truth\n");
+  }
+  else {
+    printf("False\n");
+  }
+}

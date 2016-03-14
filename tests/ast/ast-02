@@ -1,0 +1,5 @@
+int foo () {
+}
+void main(int a, boolean i) {
+  boolean j;
+}

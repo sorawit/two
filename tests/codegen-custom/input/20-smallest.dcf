@@ -1,0 +1,9 @@
+void main() {
+  int i;
+  int j;
+  int t1;
+  i = 0;
+  j = 10;
+  t1 = i + j;
+  i = t1;
+}

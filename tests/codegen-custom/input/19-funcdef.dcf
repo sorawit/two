@@ -1,0 +1,9 @@
+callout printf;
+
+int foo(int a, boolean b) {
+  return a;
+}
+
+void main() {
+  printf("%d\n", foo(4, true));
+}

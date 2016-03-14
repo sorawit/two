@@ -1,0 +1,7 @@
+// rule 14
+// ternary conditional must be boolean
+
+void main() {
+  int a;
+  a = 0 ? 1 : 2;
+}

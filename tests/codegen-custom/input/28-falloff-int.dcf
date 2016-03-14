@@ -1,0 +1,3 @@
+// Should exit with status -2
+int main() {
+}

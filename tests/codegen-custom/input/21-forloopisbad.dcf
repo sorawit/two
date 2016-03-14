@@ -1,0 +1,13 @@
+callout printf;
+void main ( ) {
+  int i, sum;
+  int j;
+  sum = 0;
+  for ( j = 0, 10 ) {
+    sum += j;
+    printf("%d\n", sum);
+  }
+  if ( sum != 45 ) {
+    printf ( "ERROR: for loop is bad (1)\n" );
+  }
+}

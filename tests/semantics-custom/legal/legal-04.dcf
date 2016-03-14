@@ -1,0 +1,22 @@
+// proper overwrite variables
+
+int A[100];
+boolean b, c;
+
+
+void main() {
+    int p;
+    int b;
+    int c;
+    p = @A;
+    while ( p > 0 ) {
+        b += A[2];
+        while (b < 20) {
+            boolean a;
+            A[25] = b - c;
+        }
+    }
+}
+void foo() {
+    b = c == (A[0] > 3);
+}

@@ -1,0 +1,8 @@
+callout printf;
+// This should produce a runtime error
+int a[10];
+void main ( ) {
+  printf ( "expecting an error next:\n" );
+  a[8] = 0;
+  printf ("something\n");
+}

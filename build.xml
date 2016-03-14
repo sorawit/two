@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+     Scala + JAVA + Antlr Build Script Written By Russell Cohen, 2013, modifed 
+     from the original script by 6.035 TAs of yore. 
+     This somewhat complex Ant script handles the necessary build dance to link 
+     Antrl, Java and Scala together.
+-->
+ 
+<project name="ProjectName" default="build" basedir=".">
+  <description>Project Build Script</description>
+ 
+  <!-- targets -->
+  <target name="build" depends="package" description="Build whole project"/>
+ 
+  <target name="clean" depends="init" description="Remove previous build files">
+    <delete dir="${build.dir}" includeemptydirs="true" quiet="true"/>
+    <ant dir="parser" target="clean" />
+  </target>
+ 
+  <target name="init">
+    <property environment="env"/>
+ 
+    <!-- check for required tools -->
+    <fail message="Missing SCALA_HOME variable in OS environment">
+      <condition><isset property="${env.SCALA_HOME}"/></condition>
+    </fail>
+    <fail message="Missing JAVA_HOME variable in OS environment">
+      <condition><isset property="${env.JAVA_HOME}"/></condition>
+    </fail>
+ 
+    <!-- variables for paths and files -->
+    <property name="src.dir" location="${basedir}/src"/>
+    <property name="tests.dir" location="${basedir}/unittests"/>
+    <property name="lib.dir" location="${basedir}/lib"/>
+    <property name="build.dir" location="${basedir}/build"/>
+    <property name="build-classes.dir" location="${build.dir}/classes"/>
+    <property name="test-classes.dir" location="${build.dir}/test/classes"/>
+    <property name="build-lib.dir" location="${build.dir}/lib"/>
+    <property name="build-doc.dir" location="${build.dir}/doc"/>
+    <property name="java.dir" location="${env.JAVA_HOME}"/>
+    <property name="scala.dir" location="${env.SCALA_HOME}"/>
+    <property name="scala-library.jar" location="${scala.dir}/scala-library.jar"/>
+    <property name="scala-compiler.jar" location="${scala.dir}/scala-compiler.jar"/>
+    <property name="scala-reflect.jar" location="${scala.dir}/scala-reflect.jar"/>
+ 
+    <path id="project.classpath">
+      <pathelement location="${scala-library.jar}"/>
+      <pathelement location="${build-classes.dir}"/> <!-- used during recompilation -->
+      <pathelement location="${test-classes.dir}"/> <!-- used during recompilation -->
+      <fileset dir="${lib.dir}">  
+        <include name="**/*.jar"/>  
+      </fileset>  
+    </path>
+ 
+    <path id="scala.classpath">
+      <pathelement location="${scala-compiler.jar}"/>
+      <pathelement location="${scala-library.jar}"/>
+      <pathelement location="${scala-reflect.jar}"/>
+    </path> 
+
+    <!-- load scala's ant tasks -->
+    <taskdef resource="scala/tools/ant/antlib.xml" classpathref="scala.classpath"/>
+ 
+    <!-- print where this project will get scala and java from -->
+    <echo message="Init project"/>
+    <echo message=" with scala.dir = ${scala.dir}"/>
+    <echo message=" with java.dir = ${java.dir}"/>
+ 
+    <!-- check if any files has been modified since last build -->
+    <uptodate property="build.uptodate" targetfile="${build.dir}/build.done">
+      <srcfiles dir= "${src.dir}" includes="**"/>
+      <srcfiles dir= "${lib.dir}" includes="**"/>
+    </uptodate>
+  </target>
+
+  <target name="parser" depends="init">
+    <ant dir="parser" />
+  </target>
+
+  <target name="compile" depends="parser" unless="build.uptodate">
+    <mkdir dir="${build-classes.dir}"/>
+    <scalac
+      destdir="${build-classes.dir}"
+      classpathref="project.classpath"
+      deprecation="off"
+      unchecked="off">
+      <include name="**/*.scala"/>
+      <include name="**/*.java"/>
+      <src>
+        <pathelement location="${src.dir}"/>
+      </src>
+    </scalac>
+    <javac
+      destdir="${build-classes.dir}"
+      classpathref="project.classpath"
+      includeantruntime="false">
+      <include name="**/*.java"/>
+      <src><pathelement location="${src.dir}"/></src>
+    </javac>
+  </target>
+
+  <target name="compile-test" depends="compile" unless="tests.uptodate">
+    <mkdir dir="${test-classes.dir}"/>
+    <scalac
+      destdir="${test-classes.dir}"
+      classpathref="project.classpath"
+      deprecation="off"
+      unchecked="off">
+      <include name="**/*.scala"/>
+      <include name="**/*.java"/>
+      <src>
+        <pathelement location="${tests.dir}"/>
+      </src>
+    </scalac>
+    <javac
+      destdir="${test-classes.dir}"
+      classpathref="project.classpath"
+      includeantruntime="false">
+      <include name="**/*.java"/>
+      <src>
+        <pathelement location="${tests.dir}"/>
+      </src>
+    </javac>
+    <uptodate property="tests.uptodate" targetfile="${build.dir}/tests.done">
+      <srcfiles dir= "${tests.dir}" includes="**"/>
+    </uptodate>
+  </target>
+  
+  <target name="test" depends="compile-test" unless="tests.uptodate">  
+    <taskdef name="scalatest" classname="org.scalatest.tools.ScalaTestAntTask" classpathref="project.classpath">  
+      <classpath>  
+        <fileset dir="${scala.dir}">  
+          <include name="**/*.jar"/>  
+        </fileset>  
+        <fileset dir="${lib.dir}">  
+          <include name="**/*.jar"/>  
+        </fileset>  
+      </classpath>  
+    </taskdef>  
+    <scalatest runpath="${test-classes.dir}" haltonfailure="true" fork="no">  
+      <reporter type="stdout" />  
+    </scalatest>  
+ </target>   
+
+  <target name="tar" depends="clean">
+    <delete file="${env.USER}-handin.tar.gz" />
+    <delete file="${env.USER}-handin.tar" />
+    <tar destfile="${env.USER}-handin.tar">
+      <tarfileset dir="."
+                  prefix="${env.USER}-handin/">
+        <include name="**/*" />
+        <exclude name="*.tar" />
+        <exclude name="*.tar.gz" />
+        <exclude name="**/.git/**" />
+      </tarfileset>
+    </tar>
+    <gzip destfile="${env.USER}-handin.tar.gz"
+          src="${env.USER}-handin.tar" />
+  </target>
+ 
+  <target name="package" depends="compile" unless="build.uptodate">
+    <mkdir dir="${build-lib.dir}"/>
+    <jar destfile="${build-lib.dir}/project.jar">
+      <fileset dir="${build-classes.dir}"/>
+      <fileset dir="${lib.dir}">  
+        <include name="**/*.jar"/>  
+      </fileset>
+     </jar>
+    <jar destfile="${build-lib.dir}/project-src.jar">
+      <fileset dir="${src.dir}" includes="**/*.scala"/>
+    </jar>
+    <touch file="${build.dir}/build.done"/> <!-- mark build as up-to-date -->
+  </target>
+</project>

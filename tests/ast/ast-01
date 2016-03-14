@@ -1,0 +1,12 @@
+callout printf;
+callout sprintf;
+
+int func(int x, boolean y) {
+  for ( i = 0, 10 ) {
+    printf("testing");
+  }
+}
+
+void main() {
+  int i, j[4];
+}

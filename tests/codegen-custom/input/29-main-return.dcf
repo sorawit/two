@@ -1,0 +1,4 @@
+// Should exit with status 95
+int main() {
+    return 95;
+}

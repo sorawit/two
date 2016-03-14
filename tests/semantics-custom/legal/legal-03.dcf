@@ -1,0 +1,6 @@
+// rule 3
+// method declared after main
+// this should be accepted, but might probably wanna produce warning
+
+void main() {}
+void foo() {}

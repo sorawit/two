@@ -1,0 +1,6 @@
+// Should exit with status -2
+int foo() {}
+int main() {
+  foo();
+  return 0;
+}

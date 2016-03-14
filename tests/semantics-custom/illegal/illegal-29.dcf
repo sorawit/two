@@ -1,0 +1,7 @@
+// rule 18
+// operands of cond_op must have type boolean
+
+void main() {
+  boolean b;
+  b = 0 || 1;
+}

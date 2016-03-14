@@ -1,0 +1,7 @@
+// rule 1
+// callout identifier declared twice
+callout printf;
+callout sprintf;
+callout printf;
+
+void main() {}

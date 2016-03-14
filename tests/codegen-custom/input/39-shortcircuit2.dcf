@@ -1,0 +1,14 @@
+callout printf;
+
+void main() {
+  int a, b, c;
+  a = 1;
+  b = 2;
+  c = 2;
+  if ( ( a == a ) && ( b == c ) ) {
+    printf ( "true and true is correct\n" );
+  }
+  // if ( ( a != a ) || ( b == c ) ) {
+  //   printf ( "false or true is correct\n" );
+  // }
+}

@@ -1,0 +1,20 @@
+callout printf;
+boolean fail ( boolean b ) {
+  printf ( "INCORRECT - shorcircuiting failed\n" );
+  return b;
+}
+void main ( ) {
+  boolean a, c;
+  a = ( 0 == 0 );
+  if (a) {
+    printf("Not is the problem\n");
+  }
+  c = ! a;
+  printf("%d\n", c);
+  if ( c ) {
+    printf ( "3INCORRECT\n" );
+  }
+  else {
+    printf ( "correct\n" );
+  }
+}

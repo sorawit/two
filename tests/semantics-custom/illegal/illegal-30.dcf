@@ -1,0 +1,7 @@
+// rule 19
+// lhs and rhs of assignment must have same type
+
+void main() {
+  int a;
+  a = true;
+}
